@@ -1,12 +1,12 @@
 import React from 'react';
-import './styles.css';
+import { ThemeProvider } from 'styled-components';
 
-function App() {
-  return (
-    <div>
-      App Component
-    </div>
-  );
-}
+import theme from '../../theme/light';
+
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <div>App Container</div>
+  </ThemeProvider>
+);
 
 export default App;
