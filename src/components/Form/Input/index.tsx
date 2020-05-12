@@ -14,10 +14,7 @@ const containerStyles = theme('mode', {
   light: css`
     background-color: ${(props) => props.theme.input.backgroundColor};
     border-bottom: 2px solid ${(props) => props.theme.input.borderColor};
-    border-radius: 0 0 2px 2px;
-    padding: 8px 8px 24px 8px;
-    display: flex;
-    flex-direction: column;
+
     color: ${(props) => props.theme.colors.primary};
   `,
 });
@@ -25,6 +22,15 @@ const containerStyles = theme('mode', {
 
 const Container = styled.div<{ inputWidth?: string }>`
   width: ${(props) => (props.inputWidth)};
+  margin-bottom: 1px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 0 0 2px 2px;
+  padding: 8px 8px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
   ${containerStyles}
 `;
 
