@@ -4,7 +4,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import Routes from '../../routes';
-import theme from '../../theme/light';
+import light from '../../theme/light';
+import defaultTheme from '../../theme/defaultTheme';
+
+const theme = {
+  ...defaultTheme,
+  ...light,
+};
 
 const App = () => (
   <ThemeProvider theme={theme}>
