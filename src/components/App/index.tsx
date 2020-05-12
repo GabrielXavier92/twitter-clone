@@ -10,6 +10,7 @@ import defaultTheme from '../../theme/defaultTheme';
 const theme = {
   ...defaultTheme,
   ...light,
+  mode: 'light',
 };
 
 const App = () => (
