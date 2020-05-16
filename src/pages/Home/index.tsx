@@ -35,7 +35,7 @@ const Home: React.FC = () => (
         profileLocale="Brasil"
         profilesStats={{ tweets: 30, followers: 50, following: 12 }}
       />
-      <FeedCard width="40%" />
+      <FeedCard minWidth="40%" />
     </Content>
 
   </Container>
