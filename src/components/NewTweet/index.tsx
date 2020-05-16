@@ -4,7 +4,7 @@ import theme from 'styled-theming';
 
 import Avatar from '../Avatar';
 import Button from '../Button';
-import TextArea from '../Form/TextArea';
+import { TextArea } from '../Form/InputTextArea';
 
 const contentStyles = theme('mode', {
   light: css`
