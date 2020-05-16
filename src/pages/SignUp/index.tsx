@@ -12,6 +12,12 @@ import AuthenticationState from '../../context/authentication/state';
 
 import SignInImageLogo from '../../assets/signIn.png';
 
+const SignUpCard = styled(Card)`
+  width: 300px;
+  margin: auto;
+`;
+
+
 const SignUpImage = styled.img`
   max-height: 100%;
   max-width: 100%;
@@ -31,7 +37,6 @@ const ButtonText = styled.span`
   font-weight: 900;
 `;
 
-
 const SignUp: React.FC = () => {
   const history = useHistory();
   const { handleSignUp, error } = useContext(AuthenticationState);
@@ -50,7 +55,7 @@ const SignUp: React.FC = () => {
 
   return (
     <Container>
-      <Card width="300px" margin="auto">
+      <SignUpCard>
         <CardBody>
           <SignUpImage src={SignInImageLogo} alt="SignIn Image" />
           {error && <ErrorMessage>{error}</ErrorMessage>}
@@ -60,7 +65,7 @@ const SignUp: React.FC = () => {
           <Button outlined width="100%" onClick={submitForm}><ButtonText>Cadastrar</ButtonText></Button>
           <BackText onClick={changePage}>Voltar</BackText>
         </CardBody>
-      </Card>
+      </SignUpCard>
     </Container>
   );
 };

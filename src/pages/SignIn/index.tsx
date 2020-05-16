@@ -12,6 +12,12 @@ import { Card, CardBody } from '../../components/Card';
 
 import SignInImageLogo from '../../assets/signIn.png';
 
+
+const SignInCard = styled(Card)`
+  width: 300px;
+  margin: auto;
+`;
+
 const SignInImage = styled.img`
   max-height: 100%;
   max-width: 100%;
@@ -50,7 +56,7 @@ const SignIn: React.FC = () => {
 
   return (
     <Container>
-      <Card width="300px" margin="auto">
+      <SignInCard>
         <CardBody>
           <SignInImage src={SignInImageLogo} alt="SignIn Image" />
           {error && <ErrorMessage>{error}</ErrorMessage>}
@@ -61,7 +67,7 @@ const SignIn: React.FC = () => {
           <OrText>ou</OrText>
           <Button width="100%" onClick={changePage}><ButtonText>Inscrever-se</ButtonText></Button>
         </CardBody>
-      </Card>
+      </SignInCard>
     </Container>
   );
 };

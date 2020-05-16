@@ -14,6 +14,13 @@ interface IProfileCard {
   profilesStats?: IProfileStats;
 }
 
+const ProfileCardStyled = styled(Card)`
+  min-width: 150px;
+  max-width: 300px;
+  padding-bottom: 0;
+`;
+
+
 const ProfileName = styled.span`
   font-size: ${(props) => props.theme.fonts.profile};
   margin-bottom: ${(props) => props.theme.spacers.spacer3};
@@ -33,11 +40,10 @@ const LocaleName = styled.span`
 
 const Description = LocaleName;
 
-
 const ProfileCard: React.FC<IProfileCard> = ({
   profileName, profileTwitter, profileLocale, profileDescription, profilesStats,
 }) => (
-  <Card minWidth="150px" maxWidth="300px" style={{ paddingBottom: 0 }}>
+  <ProfileCardStyled>
     <CardBody>
       <Avatar rounded size={80} alt="Profile avatar" />
       <ProfileName>{profileName}</ProfileName>
@@ -49,7 +55,7 @@ const ProfileCard: React.FC<IProfileCard> = ({
       <Description>{profileDescription}</Description>
       <ProfileStats {...profilesStats} />
     </CardBody>
-  </Card>
+  </ProfileCardStyled>
 );
 
 export default ProfileCard;

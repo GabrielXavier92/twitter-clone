@@ -1,15 +1,37 @@
 import React from 'react';
-import { Card, CardBody } from '../Card';
+import styled from 'styled-components';
+import { Card } from '../Card';
+
+import TweetTab, { ITab } from '../TweetTab';
+import NewTweet from '../NewTweet';
+import TweetComponent from '../TweetComponent';
 
 interface IFeedCard {
   width?: string;
 }
-const FeedCard: React.FC<IFeedCard> = ({ width }) => (
-  <Card width={width}>
-    <CardBody>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque vero eum nostrum odit! Quas voluptatum blanditiis quibusdam tempora ea, laborum atque aliquid ducimus rem, dolorum minima error ipsa mollitia sapiente.
-    </CardBody>
-  </Card>
-);
+
+const FeedCardStyled = styled(Card)<IFeedCard>`
+  width: ${(props) => props.width};
+  padding: 0;
+`;
+
+const FeedCard: React.FC<IFeedCard> = ({ width }) => {
+  const tabs: Array<ITab> = [
+    { id: '1', text: 'Tweets', active: true },
+    { id: '2', text: 'Meus Tweets', active: false },
+  ];
+
+  const tweets = [
+    { id: '1', text: 'text ' },
+  ];
+
+  return ((
+    <FeedCardStyled width={width}>
+      <TweetTab tabs={tabs} />
+      <NewTweet />
+      {tweets.map(() => (<TweetComponent />))}
+    </FeedCardStyled>
+  ));
+};
 
 export default FeedCard;
