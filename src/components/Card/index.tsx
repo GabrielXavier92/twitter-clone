@@ -16,7 +16,7 @@ const cardStyles = theme('mode', {
   dark: css``,
 });
 
-const Card = styled.div<ICard>`
+export const Card = styled.div<ICard>`
   padding: ${(props) => props.theme.spacers.spacer3};  
   border-radius: ${(props) => props.theme.spacers.spacer3};
   height: ${(props) => props.height};
@@ -25,5 +25,10 @@ const Card = styled.div<ICard>`
   ${cardStyles};
 `;
 
-
-export default Card;
+export const CardBody = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: ${(props) => props.theme.spacers.spacer3};
+`;
