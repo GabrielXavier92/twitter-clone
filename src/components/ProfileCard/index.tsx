@@ -21,6 +21,7 @@ const ProfileCardStyled = styled(Card)`
   min-width: 150px;
   max-width: 300px;
   padding-bottom: 0;
+  margin-bottom: auto;
 `;
 
 
@@ -32,16 +33,17 @@ const ProfileName = styled.span`
 const TwitterName = styled.span`
   font-size: ${(props) => props.theme.fonts.label}; 
   color: ${(props) => props.theme.fonts.greyColor};
+  margin-bottom: ${(props) => props.theme.spacers.spacer3};
 `;
 
-const LocaleName = styled.span`
+const Information = styled.span`
   margin-bottom: ${(props) => props.theme.spacers.spacer3};
   font-size: ${(props) => props.theme.fonts.description};
   overflow-wrap: break-word;
   text-align: center;
 `;
 
-const Description = LocaleName;
+const Description = Information;
 
 const ProfileCard: React.FC<IProfileCard> = ({
   profileName, profileTwitter, profileLocale, profileDescription, profilesStats,
@@ -54,11 +56,11 @@ const ProfileCard: React.FC<IProfileCard> = ({
         @
         {profileTwitter}
       </TwitterName>
-      <LocaleName>
+      <Information>
         <GoLocation />
         {profileLocale}
         <GiEarthAmerica />
-      </LocaleName>
+      </Information>
       <Description>{profileDescription}</Description>
       <ProfileStats {...profilesStats} />
     </CardBody>
