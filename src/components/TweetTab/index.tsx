@@ -17,6 +17,7 @@ const StyleTweetTab = styled.div`
   display: flex;
   border-bottom: 1px solid;
   width: 100%;
+  height: ${(props) => (props.theme.spacers.spacer5)};
   padding-top: ${(props) => (props.theme.spacers.spacer3)}; 
   box-sizing: border-box;
   ${tweetTabStyles}
@@ -33,7 +34,6 @@ const Tab = styled.div<ITab>`
   justify-content: center;
   width: 100%;
   padding-right: ${(props) => (props.theme.spacers.spacer4)};
-  padding-bottom: ${(props) => (props.theme.spacers.spacer3)};
   border-bottom: ${(props) => (props.active ? `1px solid ${props.theme.colors.primary}` : null)};
   color: ${(props) => (props.active ? props.theme.colors.primary : null)};
 `;
