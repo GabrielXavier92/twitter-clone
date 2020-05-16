@@ -39,7 +39,13 @@ const Tab = styled.div<ITab>`
 `;
 const TweetTab: React.FC<ITweetTab> = ({ tabs }) => (
   <StyleTweetTab>
-    {tabs.map((tab: ITab) => (<Tab key={tab.id} id={tab.id} text={tab.text} active={tab.active}><div>Tweets</div></Tab>))}
+    {tabs.map((tab: ITab) => (
+      <Tab key={tab.id} id={tab.id} text={tab.text} active={tab.active}>
+        <div>
+          {tab.text}
+        </div>
+      </Tab>
+    ))}
   </StyleTweetTab>
 );
 
