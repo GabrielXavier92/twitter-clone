@@ -9,6 +9,7 @@ const light = {
   },
   card: {
     borderColor: '#E1E8EE',
+    backgroudColor: '#FFF',
   },
 };
 
