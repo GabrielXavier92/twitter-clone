@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { GoLocation } from 'react-icons/go';
+import { GiEarthAmerica } from 'react-icons/gi';
+
 import Avatar from '../Avatar';
 import ProfileStats, { IProfileStats } from '../ProfileStats';
 
@@ -51,7 +54,11 @@ const ProfileCard: React.FC<IProfileCard> = ({
         @
         {profileTwitter}
       </TwitterName>
-      <LocaleName>{profileLocale}</LocaleName>
+      <LocaleName>
+        <GoLocation />
+        {profileLocale}
+        <GiEarthAmerica />
+      </LocaleName>
       <Description>{profileDescription}</Description>
       <ProfileStats {...profilesStats} />
     </CardBody>
