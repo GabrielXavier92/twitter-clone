@@ -15,6 +15,7 @@ const defaultTheme = {
   },
   fonts: {
     link: '12px',
+    error: '12px',
     label: '14px',
     input: '18px',
   },
