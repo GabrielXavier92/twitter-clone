@@ -17,8 +17,8 @@ const cardStyles = theme('mode', {
 });
 
 const Card = styled.div<ICard>`
-  padding: 12px;  
-  border-radius: 12px;
+  padding: ${(props) => props.theme.spacers.spacer3};  
+  border-radius: ${(props) => props.theme.spacers.spacer3};
   height: ${(props) => props.height};
   width: ${(props) => props.width};
   margin: ${(props) => props.margin};

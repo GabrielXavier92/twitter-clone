@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Button from '../../components/Button';
@@ -14,6 +15,7 @@ const CardBody = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 12px;
 `;
 
 const SignInImage = styled.img`
@@ -24,8 +26,8 @@ const SignInImage = styled.img`
 
 const ForgotText = styled.span`
   color: ${(props) => props.theme.colors.primary};
-  font-size: 12px;
-  margin-bottom: 16px;
+  font-size: ${(props) => props.theme.fonts.link};
+  margin-bottom: ${(props) => props.theme.spacers.spacer3};
   margin-right: auto;
 `;
 
@@ -34,29 +36,33 @@ const ButtonText = styled.span`
 `;
 
 const OrText = styled.span`
-  margin: 8px;
+  margin: ${(props) => props.theme.spacers.spacer2};
 `;
 
 const SignIn: React.FC = () => {
-  const [name, setName] = useState('');
+  const history = useHistory();
+
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const changePage = () => {
+    history.push('/signup');
+  };
 
   return (
     <Container>
-      <Card width="300px" height="600px" margin="100px 0">
+      <Card width="300px" margin="auto">
         <CardBody>
           <SignInImage src={SignInImageLogo} alt="SignIn Image" />
-          <Input width="100%" label="Email" type="text" value={name} onChange={(e) => { setName(e.target.value); }} />
+          <Input width="100%" label="Email" type="text" value={email} onChange={(e) => { setEmail(e.target.value); }} />
           <Input width="100%" label="Senha" type="password" value={password} onChange={(e) => { setPassword(e.target.value); }} />
           <ForgotText>Esqueceu sua senha?</ForgotText>
           <Button outlined width="100%"><ButtonText>Entrar</ButtonText></Button>
           <OrText>ou</OrText>
-          <Button width="100%"><ButtonText>Inscrever-se</ButtonText></Button>
+          <Button width="100%" onClick={changePage}><ButtonText>Inscrever-se</ButtonText></Button>
         </CardBody>
       </Card>
     </Container>
   );
 };
 export default SignIn;
-// #eef2f3
