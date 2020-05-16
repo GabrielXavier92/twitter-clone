@@ -5,6 +5,7 @@ interface ICard {
   width?: string;
   height?: string;
   margin?: string;
+  padding?: string;
 }
 
 const cardStyles = theme('mode', {
@@ -12,16 +13,18 @@ const cardStyles = theme('mode', {
   border-color: ${(props) => (props.theme.card.borderColor)};
   border-width: 1px;
   border-style: solid;
+  background-color: ${(props) => (props.theme.card.backgroudColor)};
   `,
   dark: css``,
 });
 
 export const Card = styled.div<ICard>`
-  padding: ${(props) => props.theme.spacers.spacer3};  
+  padding: ${(props) => (props.padding ? props.padding : props.theme.spacers.spacer3)};  
   border-radius: ${(props) => props.theme.spacers.spacer3};
-  height: ${(props) => props.height};
+  height: ${(props) => (props.height ? props.height : 'max-content')};
   width: ${(props) => props.width};
   margin: ${(props) => props.margin};
+  position: inherit;
   ${cardStyles};
 `;
 
