@@ -22,7 +22,7 @@ const cardStyles = theme('mode', {
 
 export const Card = styled.div<ICard>`
   padding: ${(props) => (props.padding ? props.padding : props.theme.spacers.spacer3)};  
-  border-radius: ${(props) => props.theme.spacers.spacer3};
+  border-radius: ${(props) => props.theme.spacers.spacer2};
   height: ${(props) => (props.height ? props.height : 'max-content')};
   width: ${(props) => props.width};
   min-width: ${(props) => props.minWidth};
