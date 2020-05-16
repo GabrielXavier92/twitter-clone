@@ -7,15 +7,15 @@ import NewTweet from '../NewTweet';
 import TweetComponent from '../TweetComponent';
 
 interface IFeedCard {
-  width?: string;
+  minWidth?: string;
 }
 
 const FeedCardStyled = styled(Card)<IFeedCard>`
-  width: ${(props) => props.width};
+  min-width: ${(props) => props.minWidth};  
   padding: 0;
 `;
 
-const FeedCard: React.FC<IFeedCard> = ({ width }) => {
+const FeedCard: React.FC<IFeedCard> = ({ minWidth }) => {
   const tabs: Array<ITab> = [
     { id: '1', text: 'Tweets', active: true },
     { id: '2', text: 'Meus Tweets', active: false },
@@ -23,10 +23,11 @@ const FeedCard: React.FC<IFeedCard> = ({ width }) => {
 
   const tweets = [
     { id: '1', text: 'text ' },
+    { id: '2', text: 'text ' },
   ];
 
   return ((
-    <FeedCardStyled width={width}>
+    <FeedCardStyled minWidth={minWidth}>
       <TweetTab tabs={tabs} />
       <NewTweet />
       {tweets.map(() => (<TweetComponent />))}
