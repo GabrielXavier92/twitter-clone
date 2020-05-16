@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
 import { ThemeProvider } from 'styled-components';
 
-import Routes from '../../routes';
-import light from '../../theme/light';
+import { PublicRoutes, ProtectedRoutes } from '../../routes';
+
+import AuthenticationState from '../../context/authentication/state';
+
 import defaultTheme from '../../theme/defaultTheme';
+import light from '../../theme/light';
 
 const theme = {
   ...defaultTheme,
@@ -13,12 +15,17 @@ const theme = {
   mode: 'light',
 };
 
-const App = () => (
-  <ThemeProvider theme={theme}>
-    <Router>
-      <Route path="/" component={Routes} />
-    </Router>
-  </ThemeProvider>
-);
+const App = () => {
+  const { auth } = useContext(AuthenticationState);
+  return (
+    <ThemeProvider theme={theme}>
+      <Router>
+        {auth
+          ? <Route path="/" component={ProtectedRoutes} />
+          : <Route path="/" component={PublicRoutes} />}
+      </Router>
+    </ThemeProvider>
+  );
+};
 
 export default App;
