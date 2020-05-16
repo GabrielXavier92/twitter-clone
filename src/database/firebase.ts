@@ -1,6 +1,7 @@
-import firebase from 'firebase';
-import 'firebase/auth';
-import 'firebase/firestore';
+import * as firebase from 'firebase';
+import { IUser } from '../interfaces/user';
+// import 'firebase/auth';
+// import 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA3EcCLyGrqsmcZBcU-SUaruJlV4gyuExE',
@@ -12,7 +13,32 @@ const firebaseConfig = {
   appId: '1:80660789795:web:aba202a709307d60598f96',
 };
 
-firebase.initializeApp(firebaseConfig);
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
-export const storage = firebase.storage();
+class Firebase {
+  auth: firebase.auth.Auth;
+
+  firestore: firebase.firestore.Firestore;
+
+  constructor() {
+    firebase.initializeApp(firebaseConfig);
+    this.auth = firebase.auth();
+    this.firestore = firebase.firestore();
+  }
+
+  get uid() {
+    return (this.auth.currentUser || {}).uid;
+  }
+
+  signUp = async (user: IUser) => this.auth.createUserWithEmailAndPassword(user.email, user.password);;
+
+  signIn = (email, password) => this.auth.signInWithEmailAndPassword(email, password);
+
+  resetPassword = (email) => this.auth.sendPasswordResetEmail(email);
+
+  signOut = () => this.auth.signOut();
+
+  updatePassword = (password) => this.auth.currentUser?.updatePassword(password);
+
+  updateUser = (user: IUser) => this.firestore.collection('users').doc(this.uid).set({ name: user.name, email: user.email });
+}
+
+export default new Firebase();
