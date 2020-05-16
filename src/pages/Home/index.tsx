@@ -15,7 +15,7 @@ const Content = styled.div`
 
 const CoverPicture = styled.div`
   position: absolute;
-  height: 200px;
+  height: 193px;
   width: 100%;
   top: 0;
   left: 0;
