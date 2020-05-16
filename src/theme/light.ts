@@ -11,6 +11,9 @@ const light = {
     borderColor: '#E1E8EE',
     backgroudColor: '#FFF',
   },
+  profileStats: {
+    dividerColor: '#E1E8EE',
+  },
 };
 
 export default light;

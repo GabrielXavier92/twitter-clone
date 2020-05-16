@@ -14,10 +14,13 @@ const defaultTheme = {
     spacer6: '128px',
   },
   fonts: {
+    profile: '22px',
+    description: '16px',
     link: '12px',
     error: '12px',
     label: '14px',
     input: '18px',
+    greyColor: '#898989',
   },
 };
 
