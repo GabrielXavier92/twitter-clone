@@ -5,9 +5,10 @@ import theme from 'styled-theming';
 interface IInputText {
   width?: string;
   label?: string;
+  placeholder?: string;
   type?: string;
   value: string;
-  onChange: any;
+  onChange?: any;
 }
 
 const containerStyles = theme('mode', {
@@ -30,7 +31,7 @@ const Container = styled.div<{ inputWidth?: string }>`
   margin-bottom: ${(props) => props.theme.spacers.spacer3};
   border-radius: 0 0 ${(props) => props.theme.spacers.spacer0} ${(props) => props.theme.spacers.spacer0};
   ${containerStyles}
-`;
+  `;
 
 const labelStyles = theme('mode', {
   light: css`
@@ -64,11 +65,11 @@ const StyledInputText = styled.input`
 
 
 const InputText: React.FC<IInputText> = ({
-  value, onChange, width, label, type = 'text',
+  value, onChange, width, label, placeholder, type = 'text',
 }) => (
   <Container inputWidth={width}>
     <Label>{label}</Label>
-    <StyledInputText onChange={onChange} value={value} type={type} />
+    <StyledInputText onChange={onChange} value={value} placeholder={placeholder} type={type} />
   </Container>
 );
 
