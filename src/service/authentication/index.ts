@@ -1,46 +1,21 @@
 import { IUser } from '../../interfaces/user';
-import { auth, firestore } from '../../database/firebase';
+import Firebase from '../../database/firebase';
 
-class Authentication {
+class AuthenticationService {
   // eslint-disable-next-line class-methods-use-this
-  get uid() {
-    return (auth.currentUser || {}).uid;
+  get auth() {
+    return Firebase.auth;
   }
 
-  createUser = async (user: IUser) => {
-    const { name, email, password } = user;
-    try {
-      await auth.createUserWithEmailAndPassword(email, password);
+  signUp = async (user: IUser) => Firebase.signUp(user);
 
-      const createdUser = firestore.collection('users').doc(this.uid);
+  signInUser = (user: IUser) => Firebase.signIn(user.email, user.password);
 
-      return createdUser.set({
-        name,
-        email,
-      });
-    } catch (err) {
-      throw new Error(err);
-    }
-  };
+  resetUserPassword = (email: any) => Firebase.resetPassword(email);
 
-  signInUser = (user: IUser) => {
-    const { email, password } = user;
-    try {
-      return auth.signInWithEmailAndPassword(email, password);
-    } catch (err) {
-      throw new Error(err);
-    }
-  };
+  updateUser = (user: IUser) => Firebase.updateUser(user);
 
-  resetUserPassword = (email) => {
-    try {
-      return auth.sendPasswordResetEmail(email);
-    } catch (err) {
-      throw new Error(err);
-    }
-  };
-
-  signOutUser = () => auth.signOut();
+  signOutUser = () => Firebase.signOut();
 }
 
-export default new Authentication();
+export default new AuthenticationService();
