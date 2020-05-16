@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 import theme from 'styled-theming';
 
 interface ICard {
+  minWidth?: string;
+  maxWidth?: string;
   width?: string;
   height?: string;
   margin?: string;
@@ -23,7 +25,10 @@ export const Card = styled.div<ICard>`
   border-radius: ${(props) => props.theme.spacers.spacer3};
   height: ${(props) => (props.height ? props.height : 'max-content')};
   width: ${(props) => props.width};
-  margin: ${(props) => props.margin};
+  min-width: ${(props) => props.minWidth};
+  max-width: ${(props) => props.maxWidth};
+  margin-right: ${(props) => (props.padding ? props.padding : props.theme.spacers.spacer3)};
+  margin-bottom: ${(props) => (props.padding ? props.padding : props.theme.spacers.spacer3)};
   position: inherit;
   ${cardStyles};
 `;
@@ -32,6 +37,5 @@ export const CardBody = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  margin-bottom: ${(props) => props.theme.spacers.spacer3};
+  flex-direction: column;  
 `;
