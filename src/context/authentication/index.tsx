@@ -25,6 +25,7 @@ const AuthenticationProvider: React.FC = ({ children }) => {
   };
 
   const handleSignOut = () => {
+    document.title = 'Twitter';
     setAuth(false);
     AuthenticationService.signOutUser();
   };
