@@ -3,7 +3,8 @@ import styled, { css } from 'styled-components';
 import theme from 'styled-theming';
 
 interface ITweetTab {
-  tabs: Array<ITab>
+  tabs: Array<ITab>;
+  onClick?: any;
 }
 
 const tweetTabStyles = theme('mode', {
@@ -37,16 +38,20 @@ const Tab = styled.div<ITab>`
   border-bottom: ${(props) => (props.active ? `1px solid ${props.theme.colors.primary}` : null)};
   color: ${(props) => (props.active ? props.theme.colors.primary : null)};
 `;
-const TweetTab: React.FC<ITweetTab> = ({ tabs }) => (
-  <StyleTweetTab>
-    {tabs.map((tab: ITab) => (
-      <Tab key={tab.id} id={tab.id} text={tab.text} active={tab.active}>
-        <div>
-          {tab.text}
-        </div>
-      </Tab>
-    ))}
-  </StyleTweetTab>
-);
+const TweetTab: React.FC<ITweetTab> = ({ tabs, onClick }) => {
+  const handleClick = (id) => onClick(id);
+
+  return (
+    <StyleTweetTab>
+      {tabs.map((tab: ITab) => (
+        <Tab key={tab.id} id={tab.id} text={tab.text} active={tab.active} onClick={() => { handleClick(tab.id); }}>
+          <div>
+            {tab.text}
+          </div>
+        </Tab>
+      ))}
+    </StyleTweetTab>
+  );
+};
 
 export default TweetTab;
