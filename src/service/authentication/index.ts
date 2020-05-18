@@ -13,6 +13,8 @@ class AuthenticationService {
 
   resetUserPassword = (email: any) => Firebase.resetPassword(email);
 
+  getUser = () => Firebase.getUser();
+
   updateUser = (user: IUser) => Firebase.updateUser(user);
 
   signOutUser = () => Firebase.signOut();
