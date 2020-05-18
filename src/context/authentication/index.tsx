@@ -11,7 +11,9 @@ const AuthenticationProvider: React.FC = ({ children }) => {
   const handleSignIn = (userInput: IUser) => AuthenticationService.signInUser(userInput).catch((err) => { setError(err.message as string); });
   const handleSignUp = (userInput: IUser) => AuthenticationService.signUp(userInput)
     .then(() => {
-      AuthenticationService.updateUser(userInput);
+      const userWithoutPassword = userInput;
+      delete userWithoutPassword.password;
+      AuthenticationService.updateUser(userWithoutPassword);
     }).catch((err) => {
       setError(err.message);
     });
