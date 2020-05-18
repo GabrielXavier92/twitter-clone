@@ -10,9 +10,8 @@ const PostProvider: React.FC = ({ children }) => {
   const handleCreatePost = (post: IPost) => PostService.createPost(post);
 
   const handleGetPosts = () => {
-    PostService.getPosts().get().then((data) => {
-      const newPosts = posts;
-      data.docs.map((doc) => newPosts.push(doc.data()));
+    PostService.getPosts().onSnapshot((snapshot) => {
+      const newPosts = snapshot.docs.map((document) => document.data());
       setPosts(newPosts);
     });
   };
