@@ -1,7 +1,7 @@
+import { IPost } from 'src/interfaces/post';
 import * as firebase from 'firebase';
 import { IUser } from '../interfaces/user';
-// import 'firebase/auth';
-// import 'firebase/firestore';
+
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA3EcCLyGrqsmcZBcU-SUaruJlV4gyuExE',
@@ -38,7 +38,16 @@ class Firebase {
 
   updatePassword = (password) => this.auth.currentUser?.updatePassword(password);
 
-  updateUser = (user: IUser) => this.firestore.collection('users').doc(this.uid).set({ name: user.name, email: user.email });
+  getUser = () => this.firestore.collection('users').doc(this.uid).get();
+
+  updateUser = (user: IUser) => this.firestore.collection('users').doc(this.uid).set(user, { merge: true });
+
+  uploadImage = (filename, file) => firebase.storage().ref(`${filename}/${this.uid}`).put(file);
+
+  createPost = (post: IPost) => this.firestore.collection('posts').doc().set({ owerId: this.uid, ...post });
+
+  getPosts = () => this.firestore.collection('posts');
+  ;
 }
 
 export default new Firebase();
