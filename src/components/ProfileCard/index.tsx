@@ -7,20 +7,13 @@ import { GiEarthAmerica } from 'react-icons/gi';
 import { TiEdit } from 'react-icons/ti';
 
 import Avatar from '../Avatar';
-import ProfileStats, { IProfileStats } from '../ProfileStats';
+import ProfileStats from '../ProfileStats';
 
 import AuthenticationState from '../../context/authentication/state';
+import UserState from '../../context/user/state';
 
 import { Card, CardBody } from '../Card';
 
-interface IProfileCard {
-  profileName?: string;
-  profilePhoto?: string;
-  profileTwitter?: string;
-  profileLocale?: string;
-  profileDescription?: string;
-  profilesStats?: IProfileStats;
-}
 
 const ProfileCardStyled = styled(Card)`
   min-width: 250px;
@@ -66,11 +59,16 @@ const Information = styled.span`
 
 const Description = Information;
 
-const ProfileCard: React.FC<IProfileCard> = ({
-  profileName, profilePhoto, profileTwitter, profileLocale, profileDescription, profilesStats,
-}) => {
+const ProfileCard: React.FC = () => {
   const history = useHistory();
   const { handleSignOut } = useContext(AuthenticationState);
+  const { user } = useContext(UserState);
+
+  const profilesStats = {
+    tweets: 30,
+    followers: 50,
+    following: 12,
+  };
 
   const changePage = () => {
     history.push('/profile');
@@ -85,18 +83,18 @@ const ProfileCard: React.FC<IProfileCard> = ({
       <CardBody>
         <SigOut onClick={signOut}>Sair da conta</SigOut>
         <EditAccount onClick={changePage}><TiEdit /></EditAccount>
-        <Avatar rounded size={100} src={profilePhoto} alt="Profile avatar" />
-        <ProfileName>{profileName}</ProfileName>
+        <Avatar rounded size={100} src={user?.photoURL} alt="Profile avatar" />
+        <ProfileName>{user?.name}</ProfileName>
         <TwitterName>
           @
-          {profileTwitter}
+          {user?.name}
         </TwitterName>
         <Information>
           <GoLocation />
-          {profileLocale}
+          {user?.location}
           <GiEarthAmerica />
         </Information>
-        <Description>{profileDescription}</Description>
+        <Description>{user?.description}</Description>
         <ProfileStats {...profilesStats} />
       </CardBody>
     </ProfileCardStyled>
