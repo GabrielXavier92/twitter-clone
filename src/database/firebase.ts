@@ -44,10 +44,9 @@ class Firebase {
 
   uploadImage = (filename, file) => firebase.storage().ref(`${filename}/${this.uid}`).put(file);
 
-  createPost = (post: IPost) => this.firestore.collection('posts').doc().set({ owerId: this.uid, ...post });
+  createPost = (post: IPost) => this.firestore.collection('posts').doc().set({ ownerId: this.uid, ...post });
 
   getPosts = () => this.firestore.collection('posts');
-  ;
 }
 
 export default new Firebase();
