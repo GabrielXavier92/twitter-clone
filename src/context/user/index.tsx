@@ -9,7 +9,11 @@ const UserProvider: React.FC = ({ children }) => {
 
   const handleGetUser = () => {
     UserService.getUser().then((getUser) => {
-      setUser(getUser.data() as IUser);
+      const fetchUser = {
+        id: getUser.id,
+        ...getUser.data() as IUser,
+      };
+      setUser(fetchUser);
     });
   };
 
