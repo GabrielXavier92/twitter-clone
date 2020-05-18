@@ -5,7 +5,6 @@ import { IUser } from '../../interfaces/user';
 import AuthenticationContext from './state';
 
 const AuthenticationProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<IUser>();
   const [error, setError] = useState('');
   const [auth, setAuth] = useState(false);
 
@@ -18,10 +17,11 @@ const AuthenticationProvider: React.FC = ({ children }) => {
     });
 
   const handleAuthState = () => {
-    AuthenticationService.auth.onAuthStateChanged((teste) => {
-      if (teste) { setAuth(true); }
+    AuthenticationService.auth.onAuthStateChanged((authState) => {
+      if (authState) {
+        setAuth(true);
+      }
     });
-    console.log(setUser);
   };
 
   const handleSignOut = () => {
@@ -32,7 +32,6 @@ const AuthenticationProvider: React.FC = ({ children }) => {
   useEffect(handleAuthState, [auth]);
 
   const value = {
-    user,
     error,
     auth,
     handleSignIn,
