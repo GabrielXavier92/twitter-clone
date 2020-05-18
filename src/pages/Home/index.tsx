@@ -30,14 +30,7 @@ const Home: React.FC = () => {
       <Container>
         <CoverPicture src={user?.coverURL} />
         <Content>
-          <ProfileCard
-            profileName={user?.name}
-            profilePhoto={user?.photoURL}
-            profileTwitter={user?.name}
-            profileDescription={user?.description}
-            profileLocale={user?.location}
-            profilesStats={{ tweets: 30, followers: 50, following: 12 }}
-          />
+          <ProfileCard />
           <FeedCard minWidth="40%" />
         </Content>
       </Container>
