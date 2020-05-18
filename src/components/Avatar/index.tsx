@@ -6,7 +6,7 @@ interface IAvatar {
   size?: string | number;
   rounded?: boolean;
   src?: string;
-  alt: string;
+  alt?: string;
 }
 
 const StyleAvatar = styled.img<IAvatar>`
