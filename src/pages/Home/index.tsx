@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Container from '../../components/Container';
+import CoverPicture from '../../components/CoverPicture';
 import FeedCard from '../../components/FeedCard';
 import ProfileCard from '../../components/ProfileCard';
+
+import UserState from '../../context/user/state';
+
+import PostsProvider from '../../context/post';
 
 const Content = styled.div`
   position: relative;
@@ -13,32 +18,31 @@ const Content = styled.div`
   margin: ${(props) => props.theme.spacers.spacer6} auto auto;
 `;
 
-const CoverPicture = styled.div`
-  position: absolute;
-  height: 193px;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-color: grey;
-`;
+const Home: React.FC = () => {
+  const { user, handleGetUser } = useContext(UserState);
 
-const Home: React.FC = () => (
-  <Container>
-    <CoverPicture>
-      imagem principal
-    </CoverPicture>
-    <Content>
-      <ProfileCard
-        profileName="Gabriel Xavier"
-        profileTwitter="meuTwitter"
-        profileDescription="alguma descricao legal hahaha"
-        profileLocale="Brasil"
-        profilesStats={{ tweets: 30, followers: 50, following: 12 }}
-      />
-      <FeedCard minWidth="40%" />
-    </Content>
-
-  </Container>
-);
+  const getData = () => {
+    handleGetUser();
+  };
+  useEffect(getData, []);
+  return (
+    <PostsProvider>
+      <Container>
+        <CoverPicture src={user?.coverURL} />
+        <Content>
+          <ProfileCard
+            profileName={user?.name}
+            profilePhoto={user?.photoURL}
+            profileTwitter={user?.name}
+            profileDescription={user?.description}
+            profileLocale={user?.location}
+            profilesStats={{ tweets: 30, followers: 50, following: 12 }}
+          />
+          <FeedCard minWidth="40%" />
+        </Content>
+      </Container>
+    </PostsProvider>
+  );
+};
 
 export default Home;
