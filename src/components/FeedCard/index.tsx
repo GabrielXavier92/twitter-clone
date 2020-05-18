@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Card } from '../Card';
 
 import TweetTab, { ITab } from '../TweetTab';
 import NewTweet from '../NewTweet';
 import TweetComponent from '../TweetComponent';
+
+import PostsState from '../../context/post/state';
 
 interface IFeedCard {
   minWidth?: string;
@@ -16,21 +18,17 @@ const FeedCardStyled = styled(Card)<IFeedCard>`
 `;
 
 const FeedCard: React.FC<IFeedCard> = ({ minWidth }) => {
+  const { posts } = useContext(PostsState);
   const tabs: Array<ITab> = [
     { id: '1', text: 'Tweets', active: true },
     { id: '2', text: 'Meus Tweets', active: false },
-  ];
-
-  const tweets = [
-    { id: '1', text: 'text ' },
-    { id: '2', text: 'text ' },
   ];
 
   return ((
     <FeedCardStyled minWidth={minWidth}>
       <TweetTab tabs={tabs} />
       <NewTweet />
-      {tweets.map(() => (<TweetComponent />))}
+      {posts.map((post) => <TweetComponent key={post.timestamp} {...post} />)}
     </FeedCardStyled>
   ));
 };
