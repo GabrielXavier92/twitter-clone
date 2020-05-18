@@ -13,6 +13,7 @@ const UserProvider: React.FC = ({ children }) => {
         id: getUser.id,
         ...getUser.data() as IUser,
       };
+      document.title = fetchUser.name as string;
       setUser(fetchUser);
     });
   };
