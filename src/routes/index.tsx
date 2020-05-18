@@ -18,6 +18,6 @@ export const ProtectedRoutes = () => (
   <Switch>
     <Route path="/home" component={Home} />
     <Route path="/profile" component={Profile} />
-    <Redirect to="/profile" />
+    <Redirect to="/home" />
   </Switch>
 );

@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+
+import { useHistory } from 'react-router-dom';
 
 import Button from '../../components/Button';
 import Container from '../../components/Container';
-import ErrorMessage from '../../components/Form/ErrorMessage';
+import CoverPicture from '../../components/CoverPicture';
 import Input from '../../components/Form/Input';
 import InputTextArea from '../../components/Form/InputTextArea';
+import ImagePicker from '../../components/Form/ImagePicker';
+
+import UserState from '../../context/user/state';
+
 import { Card, CardBody } from '../../components/Card';
 
 const Content = styled.div`
@@ -17,14 +22,6 @@ const Content = styled.div`
   margin: ${(props) => props.theme.spacers.spacer6} auto auto;
 `;
 
-const CoverPicture = styled.div`
-  position: absolute;
-  height: 193px;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-color: grey;
-`;
 
 const ProfileCard = styled(Card)`
   min-width: 500px;
@@ -39,30 +36,60 @@ const ActionButtons = styled.div`
 
 const Profile: React.FC = () => {
   const history = useHistory();
+  const { user, handleUpdateUser, uploadImageAsync } = useContext(UserState);
 
-  const [name, setName] = useState('');
-  const [location, setLocation] = useState('');
-  const [description, setDescription] = useState('');
+  const [photoURL, setAvatar] = useState(user?.photoURL || '');
+  const [coverURL, setCoverPicture] = useState(user?.coverURL || '');
+  const [name, setName] = useState(user?.name || '');
+  const [location, setLocation] = useState(user?.location || '');
+  const [description, setDescription] = useState(user?.description || '');
+
 
   const changePage = () => {
     history.push('/home');
   };
 
+  const handlePickProfileImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.currentTarget;
+    if (files![0]) {
+      const url = await uploadImageAsync('photoURL', URL.createObjectURL(files![0]));
+      setAvatar(url);
+      handleUpdateUser({ photoURL: url });
+    }
+  };
+
+  const handlePickCoverPicture = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.currentTarget;
+    if (files![0]) {
+      const url = await uploadImageAsync('coverURL', URL.createObjectURL(files![0]));
+      setCoverPicture(url);
+      handleUpdateUser({ coverURL: url });
+    }
+  };
+
+
+  const submitForm = async () => {
+    await handleUpdateUser({
+      photoURL, coverURL, name, location, description,
+    });
+    changePage();
+  };
+
   return (
     <Container>
-      <CoverPicture>
-        imagem principal
-      </CoverPicture>
+      <CoverPicture src={coverURL} />
       <Content>
         <ProfileCard>
           <CardBody>
-            <ErrorMessage>oi</ErrorMessage>
+            <ImagePicker isAvatar rounded value={photoURL} size={150} onChange={handlePickProfileImage} />
+            <ImagePicker isButton buttonText="Selecionar imagem de fundo" value={coverURL} onChange={handlePickCoverPicture} />
+
             <Input width="100%" label="Nome" value={name} onChange={(e) => { setName(e.target.value); }} />
             <Input width="100%" label="Localização" value={location} onChange={(e) => { setLocation(e.target.value); }} />
             <InputTextArea width="100%" label="Descrição" placeholder="Uma breve descrição sobre você" value={description} onChange={(e) => { setDescription(e.target.value); }} />
             <ActionButtons>
               <Button outlined onClick={changePage}>Voltar</Button>
-              <Button onClick={changePage}>Salvar</Button>
+              <Button onClick={submitForm}>Salvar</Button>
             </ActionButtons>
           </CardBody>
         </ProfileCard>
