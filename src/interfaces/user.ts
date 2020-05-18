@@ -7,4 +7,5 @@ export interface IUser {
   coverURL?: string;
   description?: string;
   location?: string;
+  mode?: boolean;
 }

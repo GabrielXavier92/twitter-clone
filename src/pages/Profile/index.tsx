@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { useHistory } from 'react-router-dom';
 
+import ToggleButton from 'react-toggle-button';
 import Button from '../../components/Button';
 import Container from '../../components/Container';
 import CoverPicture from '../../components/CoverPicture';
@@ -36,14 +37,15 @@ const ActionButtons = styled.div`
 
 const Profile: React.FC = () => {
   const history = useHistory();
-  const { user, handleUpdateUser, uploadImageAsync } = useContext(UserState);
+  const {
+    user, handleUpdateUser, uploadImageAsync, handleChangeMode,
+  } = useContext(UserState);
 
   const [photoURL, setAvatar] = useState(user?.photoURL || '');
   const [coverURL, setCoverPicture] = useState(user?.coverURL || '');
   const [name, setName] = useState(user?.name || '');
   const [location, setLocation] = useState(user?.location || '');
   const [description, setDescription] = useState(user?.description || '');
-
 
   const changePage = () => {
     history.push('/home');
@@ -70,7 +72,7 @@ const Profile: React.FC = () => {
 
   const submitForm = async () => {
     await handleUpdateUser({
-      photoURL, coverURL, name, location, description,
+      photoURL, coverURL, name, location, description, mode: user?.mode || false,
     });
     changePage();
   };
@@ -87,6 +89,7 @@ const Profile: React.FC = () => {
             <Input width="100%" label="Nome" value={name} onChange={(e) => { setName(e.target.value); }} />
             <Input width="100%" label="Localização" value={location} onChange={(e) => { setLocation(e.target.value); }} />
             <InputTextArea width="100%" label="Descrição" placeholder="Uma breve descrição sobre você" value={description} onChange={(e) => { setDescription(e.target.value); }} />
+            <ToggleButton value={user?.mode} onToggle={handleChangeMode} />
             <ActionButtons>
               <Button outlined onClick={changePage}>Voltar</Button>
               <Button onClick={submitForm}>Salvar</Button>

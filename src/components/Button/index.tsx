@@ -6,11 +6,11 @@ interface IButton {
 }
 
 const Button = styled.button<IButton>`
-  color: ${(props) => (props.outlined ? props.theme.colors.primary : '#FFF')};
-  background-color: ${(props) => (props.outlined ? '#FFF' : props.theme.colors.primary)};
+  color: ${(props) => (props.outlined ? props.theme.buttom.colorOutlined : '#FFF')};
+  background-color: ${(props) => (props.outlined ? props.theme.buttom.backgroundColor : props.theme.colors.primary)};
   border-radius: 25px;
   border-width: 1px;
-  border-color: ${(props) => (props.outlined ? props.theme.colors.primary : '#FFF')};
+  border-color: ${(props) => (props.outlined ? props.theme.colors.primary : props.theme.buttom.borderColor)};
   min-width: ${(props) => props.theme.spacers.spacer4};
   width: ${(props) => props.width};
   min-height: 40px;
@@ -18,7 +18,7 @@ const Button = styled.button<IButton>`
   font-size: ${(props) => props.theme.spacers.spacer3};
   &:hover {
     cursor: pointer;
-    background-color: ${(props) => (props.outlined ? '#ebf6fe' : props.theme.colors.hoverPrimary)}; 
+    background-color: ${(props) => (props.outlined ? props.theme.buttom.hoverOutlined : props.theme.buttom.hover)}; 
   }
 `;
 

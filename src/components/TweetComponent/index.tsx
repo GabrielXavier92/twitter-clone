@@ -19,6 +19,9 @@ const TweetCard = styled(Card)`
   max-width: 100%;
   margin-right: 0;
   border-radius: 0 ${(props) => props.theme.spacers.spacer2} ${(props) => props.theme.spacers.spacer2};
+  background-color: ${(props) => (props.theme.card.tweetCardBackgroud)};
+  border-color: ${(props) => (props.theme.card.tweetCardBorder)};
+
 `;
 
 const TweetProfile = styled.div`
@@ -34,7 +37,7 @@ const ProfileName = styled.span`
 
 const TwitterName = styled.span`
   font-size: ${(props) => props.theme.fonts.link}; 
-  color: ${(props) => props.theme.fonts.greyColor};
+  color: ${(props) => props.theme.fonts.grayColor};
   margin-right: ${(props) => props.theme.spacers.spacer3};
 `;
 
@@ -44,7 +47,7 @@ const Information = styled.span`
 `;
 
 const TweetComponent: React.FC<IPost> = ({
- ownerName, ownerPhotoURL, timestamp, content 
+  ownerName, ownerPhotoURL, timestamp, content,
 }) => (
   <Content>
     <Avatar size={40} src={ownerPhotoURL} rounded alt="Profile avatar in new tweet" />

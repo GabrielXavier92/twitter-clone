@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
-import styled, { css } from 'styled-components';
-import theme from 'styled-theming';
+import styled from 'styled-components';
 
-import { IPost } from 'src/interfaces/post';
+import { IPost } from '../../interfaces/post';
 import Avatar from '../Avatar';
 import Button from '../Button';
 import { TextArea } from '../Form/InputTextArea';
@@ -10,18 +9,10 @@ import { TextArea } from '../Form/InputTextArea';
 import UserState from '../../context/user/state';
 import PostState from '../../context/post/state';
 
-
-const contentStyles = theme('mode', {
-  light: css`
-    border-bottom: ${(props) => (`1px solid ${props.theme.card.borderColor}`)};
-  `,
-  dark: css``,
-});
-
 const Content = styled.div`
   display: flex;
   padding: ${(props) => (props.theme.spacers.spacer3)}; 
-  ${contentStyles}
+  border-bottom: ${(props) => (`1px solid ${props.theme.card.borderColor}`)};
 `;
 
 const SendArea = styled.div`
@@ -36,7 +27,7 @@ const ActionArea = styled.div`
 `;
 
 const ButtonText = styled.span`
-  font-weight: 900;
+  font-weight: 700;
 `;
 
 const NewTweet: React.FC = () => {

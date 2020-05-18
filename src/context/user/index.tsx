@@ -35,11 +35,17 @@ const UserProvider: React.FC = ({ children }) => {
     );
   });
 
+  const handleChangeMode = () => {
+    const newUser = { ...user, mode: !user?.mode };
+    setUser(newUser as IUser);
+  };
+
   const value = {
     user,
     handleGetUser,
     handleUpdateUser,
     uploadImageAsync,
+    handleChangeMode,
   };
 
   return (<UserContext.Provider value={value}>{children}</UserContext.Provider>);

@@ -34,7 +34,7 @@ const BackText = styled.span`
 `;
 
 const ButtonText = styled.span`
-  font-weight: 900;
+  font-weight: 700;
 `;
 
 const SignUp: React.FC = () => {
@@ -62,7 +62,7 @@ const SignUp: React.FC = () => {
           <Input width="100%" label="Nome" type="text" value={name} onChange={(e) => { setName(e.target.value); }} />
           <Input width="100%" label="Email" type="text" value={email} onChange={(e) => { setEmail(e.target.value); }} />
           <Input width="100%" label="Senha" type="password" value={password} onChange={(e) => { setPassword(e.target.value); }} />
-          <Button outlined width="100%" onClick={submitForm}><ButtonText>Cadastrar</ButtonText></Button>
+          <Button width="100%" onClick={submitForm}><ButtonText>Cadastrar</ButtonText></Button>
           <BackText onClick={changePage}>Voltar</BackText>
         </CardBody>
       </SignUpCard>

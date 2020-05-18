@@ -6,10 +6,12 @@ interface IUserContext {
   handleUpdateUser: Function;
   handleGetUser: Function;
   uploadImageAsync: Function;
+  handleChangeMode: Function;
 }
 
 export default createContext<IUserContext>({
   handleUpdateUser: () => false,
   handleGetUser: () => false,
   uploadImageAsync: () => false,
+  handleChangeMode: () => false,
 });

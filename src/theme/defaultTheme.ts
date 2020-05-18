@@ -2,7 +2,6 @@ const defaultTheme = {
   colors: {
     primary: '#1fa2f2',
     hoverPrimary: '#1a91da',
-    gray: '#e1e8ee',
   },
   spacers: {
     spacer0: '2px',
@@ -20,7 +19,7 @@ const defaultTheme = {
     error: '12px',
     label: '14px',
     input: '18px',
-    greyColor: '#898989',
+    grayColor: '#898989',
   },
 };
 

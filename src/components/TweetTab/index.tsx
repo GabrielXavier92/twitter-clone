@@ -1,18 +1,10 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import theme from 'styled-theming';
+import styled from 'styled-components';
 
 interface ITweetTab {
   tabs: Array<ITab>;
   onClick?: any;
 }
-
-const tweetTabStyles = theme('mode', {
-  light: css`
-    border-color: ${(props) => (props.theme.card.borderColor)};
-  `,
-  dark: css``,
-});
 
 const StyleTweetTab = styled.div`
   display: flex;
@@ -21,7 +13,7 @@ const StyleTweetTab = styled.div`
   height: ${(props) => (props.theme.spacers.spacer5)};
   padding-top: ${(props) => (props.theme.spacers.spacer3)}; 
   box-sizing: border-box;
-  ${tweetTabStyles}
+  border-color: ${(props) => (props.theme.card.borderColor)};
 `;
 
 export interface ITab {
@@ -37,6 +29,9 @@ const Tab = styled.div<ITab>`
   padding-right: ${(props) => (props.theme.spacers.spacer4)};
   border-bottom: ${(props) => (props.active ? `1px solid ${props.theme.colors.primary}` : null)};
   color: ${(props) => (props.active ? props.theme.colors.primary : null)};
+  :hover{
+    cursor: pointer;
+  }
 `;
 const TweetTab: React.FC<ITweetTab> = ({ tabs, onClick }) => {
   const handleClick = (id) => onClick(id);

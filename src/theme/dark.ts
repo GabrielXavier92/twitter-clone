@@ -1,18 +1,33 @@
 const dark = {
   container: {
-    backgroudColor: '#FFF',
+    backgroundColor: '#262d37',
   },
   input: {
-    backgroundColor: '#f5f8fa',
-    borderColor: '#657786',
-    labelColor: '#657786',
+    backgroundColor: '#192734',
+    borderColor: '#1da1f2',
+    labelColor: '#1da1f2',
+    fontColor: '#FFF',
+    textBackgroundColor: '#192734',
   },
   card: {
-    borderColor: '#E1E8EE',
-    backgroudColor: '#FFF',
+    borderColor: '#262d37',
+    backgroundColor: '#303640',
+    fontColor: '#FFF',
+    tweetCardBackgroud: '#3b424c',
+    tweetCardBorder: '#303640',
   },
   profileStats: {
-    dividerColor: 'red',
+    dividerColor: '#262d37',
+  },
+  buttom: {
+    backgroundColor: '#303640',
+    borderColor: '#303640',
+    hover: '#1a91da',
+    hoverOutlined: '#262D37',
+    colorOutlined: '#FFF',
+  },
+  coverPicture: {
+    backgroundColor: '#3D5566',
   },
 };
 

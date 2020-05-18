@@ -33,7 +33,7 @@ const EditAccount = styled.span`
   top: 0;
   right: 0;
   font-size: ${(props) => props.theme.fonts.profile}; 
-  color: ${(props) => props.theme.fonts.greyColor};
+  color: ${(props) => props.theme.card.fontColor};
   :hover {
     cursor: pointer;
   }
@@ -46,7 +46,7 @@ const SigOut = styled(EditAccount)`
 
 const TwitterName = styled.span`
   font-size: ${(props) => props.theme.fonts.label}; 
-  color: ${(props) => props.theme.fonts.greyColor};
+  color: ${(props) => props.theme.fonts.grayColor};
   margin-bottom: ${(props) => props.theme.spacers.spacer3};
 `;
 

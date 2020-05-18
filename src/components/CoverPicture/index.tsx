@@ -13,7 +13,7 @@ const Content = styled.div`
   width: 100%;
   top: 0;
   left: 0;
-  background-color: grey;
+  background-color: ${(props) => (props.theme.coverPicture.backgroundColor)};
 `;
 
 const Image = styled.img`

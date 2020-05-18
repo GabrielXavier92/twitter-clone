@@ -32,7 +32,7 @@ const ForgotText = styled.span`
 `;
 
 const ButtonText = styled.span`
-  font-weight: 900;
+  font-weight: 700;
 `;
 
 const OrText = styled.span`
@@ -63,9 +63,9 @@ const SignIn: React.FC = () => {
           <Input width="100%" label="Email" type="text" value={email} onChange={(e) => { setEmail(e.target.value); }} />
           <Input width="100%" label="Senha" type="password" value={password} onChange={(e) => { setPassword(e.target.value); }} />
           <ForgotText>Esqueceu sua senha?</ForgotText>
-          <Button outlined width="100%" onClick={submitForm}><ButtonText>Entrar</ButtonText></Button>
+          <Button width="100%" onClick={submitForm}><ButtonText>Entrar</ButtonText></Button>
           <OrText>ou</OrText>
-          <Button width="100%" onClick={changePage}><ButtonText>Inscrever-se</ButtonText></Button>
+          <Button outlined width="100%" onClick={changePage}><ButtonText>Inscrever-se</ButtonText></Button>
         </CardBody>
       </SignInCard>
     </Container>

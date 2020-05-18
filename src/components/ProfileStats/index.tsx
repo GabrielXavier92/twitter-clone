@@ -1,6 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import theme from 'styled-theming';
+import styled from 'styled-components';
 
 export interface IProfileStats {
   tweets?: string | number;
@@ -14,24 +13,17 @@ const ProfileStatsStyle = styled.div`
   justify-content: space-around;
 `;
 
-const statStyle = theme('mode', {
-  light: css`
-    border-right: 1px solid ${(props) => props.theme.profileStats.dividerColor};
-  `,
-  dark: css``,
-});
-
 const Stat = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   padding-bottom: ${(props) => props.theme.spacers.spacer3};
-  ${statStyle}
+  border-right: 1px solid ${(props) => props.theme.profileStats.dividerColor};
 `;
 
 const NameStat = styled.span`
-  color: ${(props) => props.theme.fonts.greyColor};
+  color: ${(props) => props.theme.fonts.grayColor};
   font-size: ${(props) => props.theme.fonts.description};
   margin-bottom: ${(props) => props.theme.spacers.spacer3};
 `;
