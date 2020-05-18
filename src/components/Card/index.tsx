@@ -22,6 +22,7 @@ export const Card = styled.div`
 `;
 
 export const CardBody = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
